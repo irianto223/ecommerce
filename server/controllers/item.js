@@ -27,7 +27,54 @@ var getAllItems = (req, res) => {
   .catch(err => res.send(err))
 }
 
+var getItem = (req, res) => {
+  Item.findOne({
+    _id: req.params.id
+  })
+  .then(data => {
+    res.send({
+      msg: 'data found',
+      data: data
+    })
+  })
+  .catch(err => res.send(err))
+}
+
+var deleteItem = (req, res) => {
+  Item.remove({
+    _id: req.params.id
+  })
+  .then(data => {
+    res.send({
+      msg: 'data removed',
+      data: data
+    })
+  })
+  .catch(err => res.send(err))
+}
+
+var updateItem = (req, res) => {
+  Item.update({
+    _id: req.params.id
+  },
+  {
+    name: req.body.name,
+    price: req.body.price,
+    stock: req.body.stock
+  })
+  .then(data => {
+    res.send({
+      msg: 'data updated',
+      data: data
+    })
+  })
+  .catch(err => res.send(err))
+}
+
 module.exports = {
   createItem,
-  getAllItems
+  getAllItems,
+  getItem,
+  deleteItem,
+  updateItem
 }

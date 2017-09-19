@@ -9,5 +9,8 @@ const itemController = require('../controllers/item')
 
 router.post('/', itemController.createItem)
 router.get('/', itemController.getAllItems)
+router.get('/:id', itemController.getItem)
+router.delete('/:id', itemController.deleteItem)
+router.put('/:id', itemController.updateItem)
 
 module.exports = router
